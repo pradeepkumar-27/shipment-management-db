@@ -40,6 +40,8 @@ DB scripts can be found in directory "db/migration" and they are versioned and c
 Docker Compose is used to deploy the MYSQL DB and Flyway services. Deploy the docker compose stack using the following commands from the project directory.
 
 ```
+docker compose -f docker/docker-compose.yaml build
+
 docker compose -f docker/docker-compose.yaml up -d
 ```
 Once the services are up, copy contents of "db" folder inside flyway container at path "/flyway/"

@@ -24,6 +24,11 @@ services:
     build:
       context: ./flyway
       dockerfile: Dockerfile
+    environment:
+      - DB_HOST=mysql-db
+      - DB_NAME=shipments
+      - FLYWAY_USER=flyway
+      - FLYWAY_PASSWORD=flyway
     networks:
       - db-bridge-network
     depends_on:
