@@ -1,0 +1,32 @@
+version: '3'
+networks:
+  db-bridge-network:
+    driver: bridge
+volumes:
+  mysql-db-volume:
+services:
+  mysql-db:
+    build: 
+      context: ./mysql
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=flyway
+      - MYSQL_PASSWORD=flyway
+      - MYSQL_DATABASE=shipments
+    volumes:
+      - mysql-db-volume:/var/lib/mysql
+    networks:
+      - db-bridge-network
+    ports:
+      - 33060:3306
+  flyway:
+    build:
+      context: ./flyway
+      dockerfile: Dockerfile
+    networks:
+      - db-bridge-network
+    depends_on:
+      - mysql-db
+    stdin_open: true
+    tty: true 

@@ -1,0 +1,5 @@
+GRANT ALL PRIVILEGES ON shipments.* TO admin WITH GRANT OPTION;
+
+GRANT SELECT, INSERT, UPDATE, DELETE ON shipments.* TO app;
+
+GRANT SELECT ON shipments.* TO support;
